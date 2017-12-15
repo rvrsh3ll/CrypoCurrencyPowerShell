@@ -35,7 +35,7 @@ function Mine-MostProfitableCoin {
 
 
     # How often in seconds to check whattomine.com
-    [int]$CheckinInterval = 5
+    [int]$CheckinInterval = 1800
     
     
     ###########################################################################################################################################
