@@ -35,7 +35,7 @@ function Mine-MostProfitableCoin {
 
 
     # How often in seconds to check whattomine.com
-    $CheckinInterval = 1800
+    [int]$CheckinInterval = 5
     
     
     ###########################################################################################################################################
@@ -75,9 +75,11 @@ function Mine-MostProfitableCoin {
             $NewResult = $MostProfitableCoin
             While ($MostProfitableCoin -eq $NewResult) {
                 Start-Sleep -Seconds $CheckinInterval
+                Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
-                if ($NewResult -ne $MostProfitableCoin) {
-                    Stop-Process -Processname "ccminer-x64"              
+                if ($NewResult -ne $MostProfitableCoin) 
+                    Stop-Process -Processname "ccminer-x64"
+                    break              
                 } 
             }
         } elseif ($MostProfitableCoin -eq "Monero") {
@@ -88,9 +90,11 @@ function Mine-MostProfitableCoin {
             $NewResult = $MostProfitableCoin
             While ($MostProfitableCoin -eq $NewResult) {
                 Start-Sleep -Seconds $CheckinInterval
+                Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
                 if ($NewResult -ne $MostProfitableCoin) {
                     Stop-Process -Processname "ccminer-x64"
+                    break
                                     
                 } 
             }
@@ -102,9 +106,11 @@ function Mine-MostProfitableCoin {
             $NewResult = $MostProfitableCoin
             While ($MostProfitableCoin -eq $NewResult) {
                 Start-Sleep -Seconds $CheckinInterval
+                Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
                 if ($NewResult -ne $MostProfitableCoin) {
-                    Stop-Process -Processname "ccminer-x64"             
+                    Stop-Process -Processname "ccminer-x64" 
+                    break            
                 } 
             }
         } elseif ($MostProfitableCoin -eq "MonaCoin") {
@@ -115,18 +121,13 @@ function Mine-MostProfitableCoin {
             $NewResult = $MostProfitableCoin
             While ($MostProfitableCoin -eq $NewResult) {
                 Start-Sleep -Seconds $CheckinInterval
+                Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
                 if ($NewResult -ne $MostProfitableCoin) {
-                    Stop-Process -Processname "ccminer-x64"             
+                    Stop-Process -Processname "ccminer-x64"
+                    break             
                 } 
             }
         }     
     } Start-Mining
 }
-
-
-
-
-
-
-
