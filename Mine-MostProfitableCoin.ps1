@@ -86,7 +86,7 @@ function Mine-MostProfitableCoin {
             Write-Output "The most profitable coin is currently $MostProfitableCoin"
             Write-Output " "
             Write-Output "Beginning to mine $MostProfitableCoin..."
-            Start-Process $MoneroMiner -ArgumentList "-a cryptonight -o stratum+tcp://$MoneroPool`:$MoneroPoolPort -u $MoneroAddress.$MoneroWorkerName -p $MoneroPassword --cpu-priority=3"
+            Start-Process $MoneroMiner -ArgumentList "-a cryptonight -o stratum+tcp://$MoneroPool`:$MoneroPoolPort -u $MoneroAddress -p $MoneroPassword --cpu-priority=3"
             $NewResult = $MostProfitableCoin
             While ($MostProfitableCoin -eq $NewResult) {
                 Start-Sleep -Seconds $CheckinInterval
