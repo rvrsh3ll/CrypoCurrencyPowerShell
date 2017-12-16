@@ -14,16 +14,16 @@ function Mine-MostProfitableCoin {
     $MoneroAddress = "4ALcw9nTAStZSshoWVUJakZ6tLwTDhixhQUQNJkCn4t3fG3MMK19WZM44HnQRvjqmz4LkkA8t565v7iBwQXx2r34HNroSAZ"
     $MoneroWorkerName = "myrig"
     $MoneroPassword = "x"
-    $MoneroPool = "xmr-us-east1.nanopool.org"
-    [int]$MoneroPoolPort = 14444
+    $MoneroPool = "xmr.dedpool.io"
+    [int]$MoneroPoolPort = 5555
     
 
     $BitcoinGoldMiner = "C:\Users\rvrsh3ll\Desktop\mining\Active_Miners\ccminer-x64-2.2.2-cuda9\ccminer-x64.exe"
-    $BitcoinGoldAddress = "GZW8HNJKouHdVCWcAxCb3EXumfbN9nyW54"
-    $BitcoinGoldWorkerName = "myrig"
-    $BitcoinGoldPassword = "x"
-    $BitcoinPool = "us-east.equihash-hub.miningpoolhub.com"
-    [int]$BitcoinPoolPort = 12023
+    $BitcoinGoldAddress = "rvrsh3ll"
+    $BitcoinGoldWorkerName = "rvrsh3llbtg1"
+    $BitcoinGoldPassword = "btg1"
+    $BitcoinGoldPool = "us-east.equihash-hub.miningpoolhub.com"
+    [int]$BitcoinGoldPoolPort = 20595
     
 
     $MonaCoinMiner = "C:\Users\rvrsh3ll\Desktop\mining\Active_Miners\ccminer-x64-2.2.2-cuda9\ccminer-x64.exe"
@@ -78,7 +78,7 @@ function Mine-MostProfitableCoin {
                 Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
                 if ($NewResult -ne $MostProfitableCoin) {
-                    Stop-Process -Processname "ccminer-x64"
+                    Stop-Process -Processname "ccminer-x64.exe"
                     break              
                 } 
             }
@@ -93,7 +93,7 @@ function Mine-MostProfitableCoin {
                 Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
                 if ($NewResult -ne $MostProfitableCoin) {
-                    Stop-Process -Processname "ccminer-x64"
+                    Stop-Process -Processname "ccminer-x64.exe"
                     break
                                     
                 } 
@@ -109,7 +109,7 @@ function Mine-MostProfitableCoin {
                 Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
                 if ($NewResult -ne $MostProfitableCoin) {
-                    Stop-Process -Processname "ccminer-x64" 
+                    Stop-Process -Processname "ccminer-x64.exe" 
                     break            
                 } 
             }
@@ -124,17 +124,10 @@ function Mine-MostProfitableCoin {
                 Write-Output "Checking Profitability.."
                 $NewResult = Start-ProfitabilityCheck
                 if ($NewResult -ne $MostProfitableCoin) {
-                    Stop-Process -Processname "ccminer-x64"
+                    Stop-Process -Processname "ccminer-x64.exe"
                     break             
                 } 
             }
         }     
     } Start-Mining
 }
-
-
-
-
-
-
-
