@@ -34,6 +34,13 @@ function Mine-MostProfitableCoin {
     [int]$MonaPoolPort = 3093
 
 
+    $VertCoinMiner = "C:\Users\rvrsh3ll\Desktop\mining\Active_Miners\ccminer-x64-2.2.2-cuda9\ccminer-x64.exe"
+    $VertCoinAddress = "VpKdGZo8n6sQXwXiTySrFU7jdaqEdiiYEK"
+    $VertCoinWorkerName = "rvrsh3ll"
+    $VertCoinPassword = "rvrsh3llvert1"
+    $VertCoinPool = "vtc.poolmining.org"
+    [int]$VertPoolPort = 3096
+
     # How often in seconds to check whattomine.com
     [int]$CheckinInterval = 1800
     
@@ -55,11 +62,12 @@ function Mine-MostProfitableCoin {
         $Monero = $request.coins.Monero.profitability
         $BitCoinGold = $request.coins.BitcoinGold.profitability
         $MonaCoin = $request.coins.MonaCoin.profitability
-        $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin}
+        $VertCoin = $request.coins.VertCoin.profitability
+        $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin;VertCoin=$VertCoin}
 
         
         ### Modify Variable to match the coins you are mining
-        $MostProfitableCoin = Get-Variable -Name BitCoinGold,Electroneum,Monero,MonaCoin | Sort-Object -Property Value | Select -Last 1 -ExpandProperty Name
+        $MostProfitableCoin = Get-Variable -Name BitCoinGold,Electroneum,Monero,MonaCoin,VertCoin | Sort-Object -Property Value | Select -Last 1 -ExpandProperty Name
         $MostProfitableCoin
     }
 
@@ -117,7 +125,7 @@ function Mine-MostProfitableCoin {
             Write-Output "The most profitable coin is currently $MostProfitableCoin"
             Write-Output " "
             Write-Output "Beginning to mine $MostProfitableCoin..."
-            Start-Process $BitCoinGoldMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$Mona_Server`:$MonaPoolPort -u $MonaCoin + '.' + $MonaCoinWorkerName  -p x --cpu-priority=3"
+            Start-Process $BitCoinGoldMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$MonaPool`:$MonaPoolPort -u $MonaCoin + '.' + $MonaCoinWorkerName  -p $MonaCoinPassword --cpu-priority=3"
             $NewResult = $MostProfitableCoin
             While ($MostProfitableCoin -eq $NewResult) {
                 Start-Sleep -Seconds $CheckinInterval
@@ -128,6 +136,21 @@ function Mine-MostProfitableCoin {
                     break             
                 } 
             }
-        }     
+        }elseif ($MostProfitableCoin -eq "VertCoin") {
+            Write-Output "The most profitable coin is currently $MostProfitableCoin"
+            Write-Output " "
+            Write-Output "Beginning to mine $MostProfitableCoin..."
+            Start-Process $VertCoinMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$VertCoinPool`:$VertPoolPort -u $MonaCoin + '.' + $VertCoinWorkerName  -p $VertCoinPassword --cpu-priority=3"
+            $NewResult = $MostProfitableCoin
+            While ($MostProfitableCoin -eq $NewResult) {
+                Start-Sleep -Seconds $CheckinInterval
+                Write-Output "Checking Profitability.."
+                $NewResult = Start-ProfitabilityCheck
+                if ($NewResult -ne $MostProfitableCoin) {
+                    Stop-Process -Processname "ccminer-x64.exe"
+                    break             
+                } 
+            }
+        }          
     } Start-Mining
 }
