@@ -203,9 +203,8 @@ function Mine-BestCoin {
         } elseif ($Category -eq "EstimatedRewards")  {
 
             $MostRewardedCoin = Start-RewardsCheck
-            Write-Output $$MostRewardedCoin
+            Write-Output $MostRewardedCoin
             if ($MostRewardedCoin -eq "Electroneum") {
-                Write-Output "The most rewardable coin is currently $MostRewardedCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
                 Start-Process $ElectroneumMiner -ArgumentList "-a cryptonight -o stratum+tcp://$ElectroneumPool`:$ElectroneumPoolPort.$ElectroneumWorkerName -u $ElectroneumAddress -p $ElectroneumPassword --cpu-priority=3"
