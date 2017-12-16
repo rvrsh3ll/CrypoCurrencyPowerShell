@@ -205,14 +205,14 @@ function Mine-BestCoin {
             $MostRewardedCoin = Start-RewardsCheck
             Write-Output $$MostRewardedCoin
             if ($MostRewardedCoin -eq "Electroneum") {
-                Write-Output "The most profitable coin is currently $MostRewardedCoin"
+                Write-Output "The most rewardable coin is currently $MostRewardedCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
                 Start-Process $ElectroneumMiner -ArgumentList "-a cryptonight -o stratum+tcp://$ElectroneumPool`:$ElectroneumPoolPort.$ElectroneumWorkerName -u $ElectroneumAddress -p $ElectroneumPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
-                    Write-Output "Checking Profitability.."
+                    Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
@@ -220,14 +220,14 @@ function Mine-BestCoin {
                     } 
                 }
             } elseif ($MostRewardedCoin -eq "Monero") {
-                Write-Output "The most profitable coin is currently $MostRewardedCoin"
+                Write-Output "The most rewardable coin is currently $MostRewardedCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
                 Start-Process $MoneroMiner -ArgumentList "-a cryptonight -o stratum+tcp://$MoneroPool`:$MoneroPoolPort -u $MoneroAddress.$MoneroWorkerName -p $MoneroPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
-                    Write-Output "Checking Profitability.."
+                    Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
@@ -236,14 +236,14 @@ function Mine-BestCoin {
                     } 
                 }
             } elseif ($MostRewardedCoin -eq "BitCoinGold") {
-                Write-Output "The most profitable coin is currently $MostRewardedCoin"
+                Write-Output "The most rewardable coin is currently $MostRewardedCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
                 Start-Process $BitCoinGoldMiner -ArgumentList "-a equihash -o stratum+tcp://$BitcoinGoldPool`:$BitcoinGoldPoolPort -u $BitCoinGoldAddress.$BitcoinGoldWorkerName -p $BitcoinGoldPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
-                    Write-Output "Checking Profitability.."
+                    Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe" 
@@ -251,14 +251,14 @@ function Mine-BestCoin {
                     } 
                 }
             } elseif ($MostRewardedCoinn -eq "MonaCoin") {
-                Write-Output "The most profitable coin is currently $MostRewardedCoin"
+                Write-Output "The most rewardable coin is currently $MostRewardedCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
                 Start-Process $BitCoinGoldMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$MonaPool`:$MonaPoolPort -u $MonaCoinAddress.$MonaCoinWorkerName  -p $MonaCoinPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
-                    Write-Output "Checking Profitability.."
+                    Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
@@ -266,14 +266,14 @@ function Mine-BestCoin {
                     } 
                 }
             }elseif ($MostRewardedCoin -eq "VertCoin") {
-                Write-Output "The most profitable coin is currently $MostRewardedCoin"
+                Write-Output "The most rewardable coin is currently $MostRewardedCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
                 Start-Process $VertCoinMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$VertCoinPool`:$VertPoolPort -u $VertCoinAddress. $VertCoinWorkerName  -p $VertCoinPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
-                    Write-Output "Checking Profitability.."
+                    Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
@@ -284,10 +284,3 @@ function Mine-BestCoin {
         }          
     } Start-Mining -Category $Category
 }
-
-
-
-
-
-
-
