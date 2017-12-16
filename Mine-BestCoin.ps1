@@ -207,7 +207,7 @@ function Mine-BestCoin {
             if ($MostRewardedCoin -eq "Electroneum") {
                 Write-Output "The most profitable coin is currently $MostRewardedCoin"
                 Write-Output " "
-                Write-Output "Beginning to mine $$MostRewardedCoin..."
+                Write-Output "Beginning to mine $MostRewardedCoin..."
                 Start-Process $ElectroneumMiner -ArgumentList "-a cryptonight -o stratum+tcp://$ElectroneumPool`:$ElectroneumPoolPort.$ElectroneumWorkerName -u $ElectroneumAddress -p $ElectroneumPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
@@ -284,3 +284,10 @@ function Mine-BestCoin {
         }          
     } Start-Mining -Category $Category
 }
+
+
+
+
+
+
+
