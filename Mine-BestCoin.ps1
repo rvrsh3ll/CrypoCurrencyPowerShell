@@ -10,22 +10,25 @@ function Mine-BestCoin {
     .DESCRIPTION
         Starts miners and checks ever x minutes for best coin to mine
     .PARAMETER Category
-        Mine based on a specific category
-
+        Mine based on a specific category from whattomine.com json
+    .PARAMETER CheckinInterval
+        Amount of seconds between checks against whattomine.com
     .EXAMPLE
         Import-Module .\Mine-BestCoin.ps1
         Mine-BestCoin -Category EstimatedRewards
         or
-        Mine-BestCoin -Category Profitability
+        Mine-BestCoin -Category Profitability -CheckinInterval 600
     #>
 
     [CmdletBinding()]
     Param (
-
         [Parameter(Mandatory = $true, Position = 0)]
         [ValidateSet("EstimatedRewards","Profitability")]
         [String]
-        $Category = "EstimatedRewards"
+        $Category = "EstimatedRewards",
+        [Parameter(Mandatory = $false, Position = 1)]
+        [int]
+        $CheckinInterval = 1800
     )
 
     # Modify to your appropriate information
@@ -69,7 +72,7 @@ function Mine-BestCoin {
     [int]$VertPoolPort = 3096
 
     # How often in seconds to check whattomine.com
-    [int]$CheckinInterval = 1800
+    
     
     
     ###########################################################################################################################################
