@@ -68,8 +68,8 @@ function Mine-BestCoin {
     $VertCoinAddress = "VpKdGZo8n6sQXwXiTySrFU7jdaqEdiiYEK"
     $VertCoinWorkerName = "rvrsh3ll"
     $VertCoinPassword = "rvrsh3llvert1"
-    $VertCoinPool = "vtc.poolmining.org"
-    [int]$VertPoolPort = 3096
+    $VertCoinPool = "hub.miningpoolhub.com"
+    [int]$VertPoolPort = 2057
 
     # How often in seconds to check whattomine.com
     
@@ -80,6 +80,7 @@ function Mine-BestCoin {
     
     
     function Start-RewardsCheck {
+        $MostRewardedCoin = ""
         $request = ""
         # Get API JSON and convert it
         $request = Invoke-WebRequest -Uri 'https://whattomine.com/coins.json' | ConvertFrom-Json
@@ -93,20 +94,16 @@ function Mine-BestCoin {
 
         
         ### Modify Variable to match the coins you are mining
-        $MostRewardedCoin = Get-Variable -Name BitCoinGold,Electroneum,Monero,MonaCoin,VertCoin | Sort-Object -Property Value | Select -Last 1 -ExpandProperty Name
+        $MostRewardedCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostRewardedCoin
 
     }
 
 
     function Start-ProfitabilityCheck {
-        # Get API JSON and convert it
+        $MostProfitableCoin = ""
         $request = ""
         $request = Invoke-WebRequest -Uri 'https://whattomine.com/coins.json' | ConvertFrom-Json
-
-
-
-
         ### Select the coins we are mining and their current profitability. Comment or remove coins not being mined
         $Electroneum = $request.coins.Electroneum.profitability
         $Monero = $request.coins.Monero.profitability
@@ -115,9 +112,9 @@ function Mine-BestCoin {
         $VertCoin = $request.coins.VertCoin.profitability
         $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin;VertCoin=$VertCoin}
 
-        
+    
         ### Modify Variable to match the coins you are mining
-        $MostProfitableCoin = Get-Variable -Name BitCoinGold,Electroneum,Monero,MonaCoin,VertCoin | Sort-Object -Property Value | Select -Last 1 -ExpandProperty Name
+        $MostProfitableCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostProfitableCoin
     }
 
