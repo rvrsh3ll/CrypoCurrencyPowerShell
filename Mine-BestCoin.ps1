@@ -89,8 +89,6 @@ function Mine-BestCoin {
         $MonaCoin = $request.coins.MonaCoin.estimated_rewards
         $VertCoin = $request.coins.VertCoin.estimated_rewards
         $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin;VertCoin=$VertCoin}
-
-        Write-output "here rewards"
         ### Modify Variable to match the coins you are mining
         $MostRewardedCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostRewardedCoin
@@ -108,9 +106,7 @@ function Mine-BestCoin {
         $VertCoin = $request.coins.VertCoin.profitability
         $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin;VertCoin=$VertCoin}
 
-    
         ### Modify Variable to match the coins you are mining
-        Write-Output "Here profit"
         $MostProfitableCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostProfitableCoin
         
@@ -120,7 +116,6 @@ function Mine-BestCoin {
         
         if ($Category -eq "Profitability") {
             $MostProfitableCoin = Start-ProfitabilityCheck
-            
             if ($MostProfitableCoin -eq "Electroneum") {
                 Write-Output "The most profitable coin is currently $MostProfitableCoin"
                 Write-Output " "
