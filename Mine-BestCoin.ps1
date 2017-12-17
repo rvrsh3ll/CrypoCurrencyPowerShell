@@ -133,6 +133,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking Profitability.."
                     $NewResult = Start-ProfitabilityCheck
+                    Write-Output "$NewResult is most profitable currently."
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break              
@@ -148,6 +149,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking Profitability.."
                     $NewResult = Start-ProfitabilityCheck
+                    Write-Output "$NewResult is most profitable currently."
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break
@@ -164,6 +166,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking Profitability.."
                     $NewResult = Start-ProfitabilityCheck
+                    Write-Output "$NewResult is most profitable currently."
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64.exe" 
                         break            
@@ -179,6 +182,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking Profitability.."
                     $NewResult = Start-ProfitabilityCheck
+                    Write-Output "$NewResult is most profitable currently."
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break             
@@ -194,6 +198,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking Profitability.."
                     $NewResult = Start-ProfitabilityCheck
+                    Write-Output "$NewResult is most profitable currently."
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break             
@@ -201,7 +206,6 @@ function Mine-BestCoin {
                 }
             }
         } elseif ($Category -eq "EstimatedRewards")  {
-
             $MostRewardedCoin = Start-RewardsCheck
             Write-Output $MostRewardedCoin
             if ($MostRewardedCoin -eq "Electroneum") {
@@ -213,6 +217,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
+                    Write-Output "$NewResult currently has the highest reward rate."
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break              
@@ -228,6 +233,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
+                    Write-Output "$NewResult currently has the highest reward rate."
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break
@@ -244,6 +250,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
+                    Write-Output "$NewResult currently has the highest reward rate."
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe" 
                         break            
@@ -259,6 +266,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
+                    Write-Output "$NewResult currently has the highest reward rate."
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break             
@@ -274,6 +282,7 @@ function Mine-BestCoin {
                     Start-Sleep -Seconds $CheckinInterval
                     Write-Output "Checking reward amounts.."
                     $NewResult = Start-RewardsCheck
+                    Write-Output "$NewResult currently has the highest reward rate."
                     if ($NewResult -ne $MostRewardedCoin) {
                         Stop-Process -Processname "ccminer-x64.exe"
                         break             
