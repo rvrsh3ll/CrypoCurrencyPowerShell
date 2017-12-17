@@ -80,19 +80,17 @@ function Mine-BestCoin {
     
     
     function Start-RewardsCheck {
-        $MostRewardedCoin = ""
-        $request = ""
         # Get API JSON and convert it
         $request = Invoke-WebRequest -Uri 'https://whattomine.com/coins.json' | ConvertFrom-Json
         ### Select the coins we are mining and their current profitability. Comment or remove coins not being mined
-        $Electroneum = $request.coins.Electroneum.estimated_reward
-        $Monero = $request.coins.Monero.estimated_reward
-        $BitCoinGold = $request.coins.BitcoinGold.estimated_reward
-        $MonaCoin = $request.coins.MonaCoin.estimated_reward
-        $VertCoin = $request.coins.VertCoin.estimated_reward
+        $Electroneum = $request.coins.Electroneum.estimated_rewards
+        $Monero = $request.coins.Monero.estimated_rewards
+        $BitCoinGold = $request.coins.BitcoinGold.estimated_rewards
+        $MonaCoin = $request.coins.MonaCoin.estimated_rewards
+        $VertCoin = $request.coins.VertCoin.estimated_rewards
         $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin;VertCoin=$VertCoin}
 
-        
+        Write-output "here rewards"
         ### Modify Variable to match the coins you are mining
         $MostRewardedCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostRewardedCoin
@@ -101,8 +99,6 @@ function Mine-BestCoin {
 
 
     function Start-ProfitabilityCheck {
-        $MostProfitableCoin = ""
-        $request = ""
         $request = Invoke-WebRequest -Uri 'https://whattomine.com/coins.json' | ConvertFrom-Json
         ### Select the coins we are mining and their current profitability. Comment or remove coins not being mined
         $Electroneum = $request.coins.Electroneum.profitability
@@ -114,15 +110,17 @@ function Mine-BestCoin {
 
     
         ### Modify Variable to match the coins you are mining
+        Write-Output "Here profit"
         $MostProfitableCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostProfitableCoin
+        
     }
 
     function Start-Mining ($Category, $CheckinInterval) {
         
         if ($Category -eq "Profitability") {
             $MostProfitableCoin = Start-ProfitabilityCheck
-            Write-Output $MostProfitableCoin
+            
             if ($MostProfitableCoin -eq "Electroneum") {
                 Write-Output "The most profitable coin is currently $MostProfitableCoin"
                 Write-Output " "
