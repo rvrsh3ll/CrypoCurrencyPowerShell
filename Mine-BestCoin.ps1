@@ -28,7 +28,7 @@ function Mine-BestCoin {
         $Category = "EstimatedRewards",
         [Parameter(Mandatory = $false, Position = 1)]
         [int]
-        $CheckinInterval = 1800
+        $global:CheckinInterval = 1800
     )
 
     # Modify to your appropriate information
@@ -130,7 +130,7 @@ function Mine-BestCoin {
                 Write-Output "The most profitable coin is currently $MostProfitableCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostProfitableCoin..."
-                Start-Process $ElectroneumMiner -ArgumentList "-a cryptonight -o stratum+tcp://$ElectroneumPool`:$ElectroneumPoolPort.$ElectroneumWorkerName -u $ElectroneumAddress -p $ElectroneumPassword --cpu-priority=3"
+                Start-Process $ElectroneumMiner -ArgumentList "-a cryptonight -o stratum+tcp://$ElectroneumPool`:$ElectroneumPoolPort -u $ElectroneumAddress -p $ElectroneumPassword --cpu-priority=3"
                 $NewResult = $MostProfitableCoin
                 While ($MostProfitableCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
@@ -214,7 +214,7 @@ function Mine-BestCoin {
             if ($MostRewardedCoin -eq "Electroneum") {
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
-                Start-Process $ElectroneumMiner -ArgumentList "-a cryptonight -o stratum+tcp://$ElectroneumPool`:$ElectroneumPoolPort.$ElectroneumWorkerName -u $ElectroneumAddress -p $ElectroneumPassword --cpu-priority=3"
+                Start-Process $ElectroneumMiner -ArgumentList "-a cryptonight -o stratum+tcp://$ElectroneumPool`:$ElectroneumPoolPort -u $ElectroneumAddress -p $ElectroneumPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
@@ -279,7 +279,7 @@ function Mine-BestCoin {
                 Write-Output "The most rewardable coin is currently $MostRewardedCoin"
                 Write-Output " "
                 Write-Output "Beginning to mine $MostRewardedCoin..."
-                Start-Process $VertCoinMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$VertCoinPool`:$VertPoolPort -u $VertCoinAddress. $VertCoinWorkerName  -p $VertCoinPassword --cpu-priority=3"
+                Start-Process $VertCoinMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$VertCoinPool`:$VertPoolPort -u $VertCoinAddress.$VertCoinWorkerName  -p $VertCoinPassword --cpu-priority=3"
                 $NewResult = $MostRewardedCoin
                 While ($MostRewardedCoin -eq $NewResult) {
                     Start-Sleep -Seconds $CheckinInterval
