@@ -28,7 +28,7 @@ function Mine-BestCoin {
         $Category = "EstimatedRewards",
         [Parameter(Mandatory = $false, Position = 1)]
         [int]
-        $global:CheckinInterval = 1800
+        $CheckinInterval = 1800
     )
 
     # Modify to your appropriate information
@@ -121,7 +121,7 @@ function Mine-BestCoin {
         $MostProfitableCoin
     }
 
-    function Start-Mining ($Category) {
+    function Start-Mining ($Category, $CheckinInterval) {
         
         if ($Category -eq "Profitability") {
             $MostProfitableCoin = Start-ProfitabilityCheck
@@ -293,5 +293,5 @@ function Mine-BestCoin {
                 }
             }
         }          
-    } Start-Mining -Category $Category
+    } Start-Mining $Category $CheckinInterval    
 }
