@@ -32,7 +32,7 @@ function Mine-BestCoin {
         [int]
         $CheckinInterval = 1800,
         [Parameter(Mandatory = $false, Position = 2)]
-        [ValidateSet("Electroneum","Monero","BitcoinGold","MonaCoin","VertCoin")]
+        [ValidateSet("Electroneum","Monero","BitcoinGold","MonaCoin","VertCoin","VergeCoin")]
         [String]
         $Coin
     )
@@ -76,9 +76,16 @@ function Mine-BestCoin {
     $VertCoinWorkerName = "rvrsh3ll"
     $VertCoinPassword = "rvrsh3llvert1"
     $VertCoinPool = "hub.miningpoolhub.com"
-    [int]$VertPoolPort = 2057
+    [int]$VertPoolPort = 20507
 
-        
+    $VergeCoinMiner = $CCMINER
+    $VergeCoinAddress = "rvrsh3ll"
+    $VergeCoinWorkerName = "rvrsh3ll2"
+    $VergeCoinPassword = "verge2"
+    $VergeCoinPool = "hub.miningpoolhub.com"
+    [int]$VergeCoinPoolPort = 20523
+
+      
     
     
     ###########################################################################################################################################
@@ -93,7 +100,6 @@ function Mine-BestCoin {
         $MonaCoin = $request.coins.MonaCoin.estimated_rewards
         $VertCoin = $request.coins.VertCoin.estimated_rewards
         $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin;VertCoin=$VertCoin}
-        ### Modify Variable to match the coins you are mining
         $MostRewardedCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostRewardedCoin
 
@@ -109,8 +115,6 @@ function Mine-BestCoin {
         $MonaCoin = $request.coins.MonaCoin.profitability
         $VertCoin = $request.coins.VertCoin.profitability
         $CoinsToMine = @{Electroneum=$Electroneum;Monero=$Monero;BitcoinGold=$BitCoinGold;MonaCoin=$MonaCoin;VertCoin=$VertCoin}
-
-        ### Modify Variable to match the coins you are mining
         $MostProfitableCoin = $CoinsToMine.GetEnumerator() | Sort-Object -Property Value -Descending | Select -First 1 -ExpandProperty Name
         $MostProfitableCoin
         
@@ -131,6 +135,9 @@ function Mine-BestCoin {
     }
     function Mine-VertCoin ($CheckinInterval) {
         Start-Process $VertCoinMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$VertCoinPool`:$VertPoolPort -u $VertCoinAddress.$VertCoinWorkerName  -p $VertCoinPassword --cpu-priority=3"
+    }
+    function Mine-VergeCoin ($CheckinInterval) {
+        Start-Process $VergeCoinMiner -ArgumentList "-a lyra2v2 -o stratum+tcp://$VergeCoinPool`:$VergeCoinPoolPort -u $VergeCoinAddress.$VergeCoinWorkerName  -p $VergeCoinPassword --cpu-priority=3"
     }
 
 
@@ -317,4 +324,3 @@ function Mine-BestCoin {
         }
     }  
 }
-
