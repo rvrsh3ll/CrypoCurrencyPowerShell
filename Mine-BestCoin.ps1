@@ -106,7 +106,8 @@ function Mine-BestCoin {
 
 
     function Mine-Profitability ($CheckinInterval) {
-        $MostProfitableCoin = Start-ProfitabilityCheck
+        while ($true) {
+            $MostProfitableCoin = Start-ProfitabilityCheck
         if ($MostProfitableCoin -eq "BitSend") {
             Write-Output "The most profitable coin is currently $MostProfitableCoin"
             Write-Output " "
@@ -193,12 +194,14 @@ function Mine-BestCoin {
                     } 
                 }
             }
-        }
+        } 
+    }
     
     function Mine-Rewards ($CheckinInterval) {
-        $MostRewardedCoin = Start-RewardsCheck
-        Write-Output $MostRewardedCoin
-        if ($MostRewardedCoin -eq "BitSend") {
+        while ($true) {
+            $MostRewardedCoin = Start-RewardsCheck
+            Write-Output $MostRewardedCoin
+            if ($MostRewardedCoin -eq "BitSend") {
             Write-Output " "
             Write-Output "Beginning to mine $MostRewardedCoin..."
             Mine-BitSend
@@ -283,6 +286,7 @@ function Mine-BestCoin {
                 } 
             }
         }
+    }
     } 
     # Check if we are mining solo
     if ($Coin) {
