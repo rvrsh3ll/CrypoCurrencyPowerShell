@@ -121,7 +121,7 @@ function Mine-BestCoin {
                 if ($NewResult -ne $MostProfitableCoin) {
                     Stop-Process -Processname "ccminer-x64"
                     Stop-Process -Processname "ccminer"
-                    $("Mine-" + $NewResult)             
+                    & ("Mine-" + $NewResult)               
                 } 
             }
         } elseif ($MostProfitableCoin -eq "RavenCoin") {
@@ -138,7 +138,7 @@ function Mine-BestCoin {
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64"
                         Stop-Process -Processname "ccminer"
-                        $("Mine-" + $NewResult)               
+                        & ("Mine-" + $NewResult)                
                     } 
                 }
             }elseif ($MostProfitableCoin -eq "Verge") {
@@ -155,7 +155,7 @@ function Mine-BestCoin {
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64"
                         Stop-Process -Processname "ccminer"
-                        $("Mine-" + $NewResult)               
+                        & ("Mine-" + $NewResult)                
                     } 
                 }
             }elseif ($MostProfitableCoin -eq "HelpTheHomeless") {
@@ -172,7 +172,7 @@ function Mine-BestCoin {
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64"
                         Stop-Process -Processname "ccminer"
-                        $("Mine-" + $NewResult)               
+                        & ("Mine-" + $NewResult)                 
                     } 
                 }
             }elseif ($MostProfitableCoin -eq "DigiByte") {
@@ -189,7 +189,7 @@ function Mine-BestCoin {
                     if ($NewResult -ne $MostProfitableCoin) {
                         Stop-Process -Processname "ccminer-x64"
                         Stop-Process -Processname "ccminer"
-                        $("Mine-" + $NewResult)               
+                        & ("Mine-" + $NewResult)             
                     } 
                 }
             }
@@ -211,7 +211,7 @@ function Mine-BestCoin {
                 if ($NewResult -ne $MostRewardedCoin) {
                     Stop-Process -Processname "ccminer-x64"
                     Stop-Process -Processname "ccminer"
-                      $("Mine-" + $NewResult)              
+                      & ("Mine-" + $NewResult)                
                 } 
             }
         } elseif ($MostRewardedCoin -eq "RavenCoin") {
@@ -228,7 +228,7 @@ function Mine-BestCoin {
                 if ($NewResult -ne $MostRewardedCoin) {
                     Stop-Process -Processname "ccminer-x64"
                     Stop-Process -Processname "ccminer"
-                     $("Mine-" + $NewResult)             
+                     & ("Mine-" + $NewResult)              
                 } 
             }
         }elseif ($MostRewardedCoin -eq "VergeCoin") {
@@ -245,7 +245,7 @@ function Mine-BestCoin {
                 if ($NewResult -ne $MostRewardedCoin) {
                     Stop-Process -Processname "ccminer-x64"
                     Stop-Process -Processname "ccminer"
-                    $("Mine-" + $NewResult)               
+                    & ("Mine-" + $NewResult)                 
                 } 
             }          
         }elseif ($MostRewardedCoin -eq "HelpTheHomeless") {
@@ -262,7 +262,7 @@ function Mine-BestCoin {
                 if ($NewResult -ne $MostRewardedCoin) {
                     Stop-Process -Processname "ccminer-x64"
                     Stop-Process -Processname "ccminer"
-                    $("Mine-" + $NewResult)               
+                    & ("Mine-" + $NewResult)               
                 } 
             }
         }elseif ($MostRewardedCoin -eq "DigiByte") {
@@ -279,7 +279,7 @@ function Mine-BestCoin {
                 if ($NewResult -ne $MostRewardedCoin) {
                     Stop-Process -Processname "ccminer-x64"
                     Stop-Process -Processname "ccminer"
-                    $("Mine-" + $NewResult)               
+                    & ("Mine-" + $NewResult)               
                 } 
             }
         }
@@ -287,7 +287,7 @@ function Mine-BestCoin {
     # Check if we are mining solo
     if ($Coin) {
         Write-Output "Mining $Coin.."
-        $CointoMine = $('Mine-' + $Coin)
+        $CointoMine = & ('Mine-' + $Coin)
         .$CointoMine
     }else {
         if ($Category -eq "Profitability") {
