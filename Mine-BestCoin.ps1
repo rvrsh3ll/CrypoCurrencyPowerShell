@@ -287,7 +287,7 @@ function Mine-BestCoin {
     # Check if we are mining solo
     if ($Coin) {
         Write-Output "Mining $Coin.."
-        $CointoMine = $('Mine-') + $Coin
+        $CointoMine = $('Mine-' + $Coin)
         .$CointoMine
     }else {
         if ($Category -eq "Profitability") {
